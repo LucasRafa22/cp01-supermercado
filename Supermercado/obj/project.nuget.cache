@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9sQJeazCKIk=",
+  "dgSpecHash": "wva5iTkAkao=",
   "success": true,
-  "projectFilePath": "C:\\Users\\costo\\RiderProjects\\cp01-supermercado\\Supermercado\\Supermercado.csproj",
+  "projectFilePath": "C:\\Users\\costo\\RiderProjects\\cp01-supermercado0\\Supermercado\\Supermercado.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\costo\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.13\\microsoft.aspnetcore.openapi.9.0.13.nupkg.sha512",
     "C:\\Users\\costo\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
