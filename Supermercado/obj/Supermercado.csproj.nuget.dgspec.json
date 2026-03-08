@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Probook\\OneDrive\\Documentos\\2TDSPF\\1sem\\Advanced Business Development with .NET\\cp01-supermercado\\Supermercado\\Supermercado.csproj": {}
+    "C:\\Users\\costo\\RiderProjects\\cp01-supermercado\\Supermercado\\Supermercado.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Probook\\OneDrive\\Documentos\\2TDSPF\\1sem\\Advanced Business Development with .NET\\cp01-supermercado\\Supermercado\\Supermercado.csproj": {
+    "C:\\Users\\costo\\RiderProjects\\cp01-supermercado\\Supermercado\\Supermercado.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Probook\\OneDrive\\Documentos\\2TDSPF\\1sem\\Advanced Business Development with .NET\\cp01-supermercado\\Supermercado\\Supermercado.csproj",
+        "projectUniqueName": "C:\\Users\\costo\\RiderProjects\\cp01-supermercado\\Supermercado\\Supermercado.csproj",
         "projectName": "Supermercado",
-        "projectPath": "C:\\Users\\Probook\\OneDrive\\Documentos\\2TDSPF\\1sem\\Advanced Business Development with .NET\\cp01-supermercado\\Supermercado\\Supermercado.csproj",
-        "packagesPath": "C:\\Users\\Probook\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Probook\\OneDrive\\Documentos\\2TDSPF\\1sem\\Advanced Business Development with .NET\\cp01-supermercado\\Supermercado\\obj\\",
+        "projectPath": "C:\\Users\\costo\\RiderProjects\\cp01-supermercado\\Supermercado\\Supermercado.csproj",
+        "packagesPath": "C:\\Users\\costo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\costo\\RiderProjects\\cp01-supermercado\\Supermercado\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Probook\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\costo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -68,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\Probook\\.dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\costo\\.dotnet\\sdk\\9.0.311/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
