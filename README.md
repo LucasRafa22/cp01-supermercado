@@ -1,89 +1,165 @@
-# CP1 — Modelo Entidade Relacionamento e WebAPI (.NET)
+# 🛒 Supermercado API — CP2
 
-## Integrantes
+## 👥 Integrantes
 
-| Nome | RM |
-|------|------|
-| Samyr | RM565562 |
-| Lucas | RM565194 |
+* Nome: Lucas Rafael Solimene RM: 565194
+* Nome: Samyr Couto Oliveira RM: 565562
 
 ---
 
-# Domínio do Projeto
+## 🎯 Domínio do Projeto
 
-Sistema de **Supermercado / Controle de Vendas**, com foco em:
-
-- cadastro de clientes
-- cadastro de produtos
-- organização por categorias
-- registro de vendas
+O projeto representa um sistema de **Supermercado**, permitindo o gerenciamento de clientes, produtos, categorias e vendas.
 
 ---
 
-# Entidades
+## 🧱 Entidades Modeladas
 
-O modelo foi construído com **5 entidades principais**:
+* **Cliente**
 
-| Entidade | Descrição |
-|--------|--------|
-| Cliente | Pessoa que realiza compras no sistema |
-| Venda | Registro de uma compra realizada |
-| Categoria | Classificação de produtos |
-| Produto | Produto disponível para venda |
-| ItemVenda | Produtos que fazem parte de uma venda |
+  * Nome
+  * Email
+  * Telefone
+  * DataCadastro
 
-Essas entidades representam a base de um sistema de mercado, permitindo cadastrar produtos por categoria, registrar clientes e armazenar vendas com seus respectivos itens.
+* **Categoria**
 
----
+  * Nome
+  * Descrição
 
-# Relacionamentos
+* **Produto**
 
-## Cliente → Venda
+  * Nome
+  * Preço
+  * Estoque
+  * CategoriaId
 
-Um cliente pode realizar várias vendas, mas cada venda pertence a apenas um cliente.
+* **Venda**
 
-Cardinalidade: **1:N**
+  * ClienteId
+  * DataVenda
+  * ValorTotal
 
-Opcionalidade:
+* **ItemVenda**
 
-- Cliente → pode ter **0 ou N vendas**
-- Venda → deve possuir **1 cliente**
-
----
-
-## Categoria → Produto
-
-Uma categoria pode possuir vários produtos, mas cada produto pertence a apenas uma categoria.
-
-Cardinalidade: **1:N**
-
-Opcionalidade:
-
-- Categoria → pode ter **0 ou N produtos**
-- Produto → deve possuir **1 categoria**
+  * VendaId
+  * ProdutoId
+  * Quantidade
+  * PrecoUnitario
 
 ---
 
-## Venda → ItemVenda
+## 🔗 Relacionamentos
 
-Uma venda pode conter vários itens, mas cada item pertence a apenas uma venda.
+* Cliente **1:N** Venda
+  → Um cliente pode ter várias vendas
 
-Cardinalidade: **1:N**
+* Categoria **1:N** Produto
+  → Uma categoria pode ter vários produtos
 
-Opcionalidade:
+* Venda **1:N** ItemVenda
+  → Uma venda pode ter vários itens
 
-- Venda → deve possuir **1 ou N itens**
-- ItemVenda → pertence a **1 venda**
+* Produto **1:N** ItemVenda
+  → Um produto pode aparecer em vários itens de venda
 
 ---
 
-## Produto → ItemVenda
+## 🗄️ Banco de Dados
 
-Um produto pode aparecer em vários itens de venda, mas cada item faz referência a apenas um produto.
+* **SGBD utilizado:** SQLite
+* Banco gerado automaticamente via Entity Framework Core
+* Arquivo: `supermercado.db`
 
-Cardinalidade: **1:N**
+---
 
-Opcionalidade:
+## ⚙️ Tecnologias Utilizadas
 
-- Produto → pode aparecer em **0 ou N itens**
-- ItemVenda → deve referenciar **1 produto**
+* .NET 9
+* Entity Framework Core
+* SQLite
+* Clean Architecture
+
+---
+
+## 🧩 Arquitetura
+
+O projeto segue o padrão **Clean Architecture**, dividido em:
+
+* **Domain**
+
+  * Entidades e regras de negócio
+
+* **Application**
+
+  * Interfaces de repositório
+
+* **Infrastructure**
+
+  * DbContext
+  * Mapeamentos (Fluent API)
+  * Repositórios
+
+* **API**
+
+  * Configuração da aplicação
+  * Injeção de dependência
+
+---
+
+## 🔄 Migrations
+
+Migration inicial criada para gerar todo o banco de dados:
+
+```bash
+dotnet ef migrations add InitialCreate --project Supermercado.Infrastructure --startup-project Supermercado.API
+```
+
+Aplicar no banco:
+
+```bash
+dotnet ef database update --project Supermercado.Infrastructure --startup-project Supermercado.API
+```
+
+---
+
+## ▶️ Como Executar o Projeto
+
+1. Clonar o repositório
+2. Restaurar dependências:
+
+```bash
+dotnet restore
+```
+
+3. Aplicar o banco:
+
+```bash
+dotnet ef database update --project Supermercado.Infrastructure --startup-project Supermercado.API
+```
+
+4. Rodar a API:
+
+```bash
+dotnet run --project Supermercado.API
+```
+
+---
+
+## 📸 Evidência do Banco
+
+As imagens do banco de dados gerado estão disponíveis na pasta:
+
+```
+/docs/
+```
+
+---
+
+## ✅ Status do Projeto
+
+✔ Modelo MER implementado
+✔ Persistência com EF Core
+✔ Migrations funcionando
+✔ Banco criado com sucesso
+✔ Arquitetura limpa aplicada
