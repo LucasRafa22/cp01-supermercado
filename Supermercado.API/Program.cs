@@ -1,50 +1,44 @@
+using Microsoft.EntityFrameworkCore;
 using Supermercado.Infrastructure.Data;
 using Supermercado.Application.Interfaces;
 using Supermercado.Infrastructure.Repositories;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Supermercado.API;
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-
-builder.Services.AddOpenApi();
-
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.MapOpenApi();
-}
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-app.UseHttpsRedirection();
+        builder.Services.AddControllers();
+        
+        builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+        
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+        {
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            options.UseSqlite(connectionString);
+        });
+        
+        var app = builder.Build();
+        
+        if (app.Environment.IsDevelopment())
+        {
+            
+        }
 
-app.MapGet("/clientes", async (IClienteRepository repo) =>
-{
-    return await repo.GetAllAsync();
-});
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-            new WeatherForecast(
-                DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                Random.Shared.Next(-20, 55),
-                summaries[Random.Shared.Next(summaries.Length)]
-            ))
-        .ToArray();
-    return forecast;
-});
-
-app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        app.UseHttpsRedirection();
+        app.UseAuthorization();
+        
+        app.MapControllers();
+        
+        app.MapGet("/clientes", async (IClienteRepository repo) =>
+        {
+            return await repo.GetAllAsync();
+        });
+        
+        app.Run();
+        
+    }
 }

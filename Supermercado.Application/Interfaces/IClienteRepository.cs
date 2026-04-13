@@ -1,6 +1,8 @@
+using Supermercado.Domain.Entities;
+
 namespace Supermercado.Application.Interfaces;
 
-public class IClienteRepository
+public interface IClienteRepository
 {
-    
+    Task<List<Cliente>> GetAllAsync();
 }
