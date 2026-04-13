@@ -10,6 +10,8 @@ public class Venda : BaseEntity
 
     public decimal ValorTotal { get; private set; }
 
+    public List<ItemVenda> Itens { get; private set; } = new();
+    
     public Venda(Guid clienteId)
     {
         ClienteId = clienteId;
