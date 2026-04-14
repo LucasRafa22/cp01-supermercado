@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Supermercado.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class migracao : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,11 +15,11 @@ namespace Supermercado.Infrastructure.Migrations
                 name: "Categorias",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Nome = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Descricao = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
-                    Active = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Nome = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
+                    Descricao = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
+                    Active = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,13 +30,13 @@ namespace Supermercado.Infrastructure.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Nome = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Email = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
-                    Telefone = table.Column<string>(type: "TEXT", maxLength: 20, nullable: false),
-                    DataCadastro = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Active = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Nome = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
+                    Email = table.Column<string>(type: "NVARCHAR2(150)", maxLength: 150, nullable: false),
+                    Telefone = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
+                    Active = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,13 +47,13 @@ namespace Supermercado.Infrastructure.Migrations
                 name: "Produtos",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Nome = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    Preco = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Estoque = table.Column<int>(type: "INTEGER", nullable: false),
-                    CategoriaId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Active = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Nome = table.Column<string>(type: "NVARCHAR2(100)", maxLength: 100, nullable: false),
+                    Preco = table.Column<decimal>(type: "NUMBER(18,2)", nullable: false),
+                    Estoque = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    CategoriaId = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Active = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -70,12 +70,12 @@ namespace Supermercado.Infrastructure.Migrations
                 name: "Vendas",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ClienteId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    DataVenda = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ValorTotal = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Active = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    ClienteId = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    DataVenda = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
+                    ValorTotal = table.Column<decimal>(type: "NUMBER(18,2)", nullable: false),
+                    Active = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,13 +92,13 @@ namespace Supermercado.Infrastructure.Migrations
                 name: "ItensVenda",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    VendaId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    ProdutoId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Quantidade = table.Column<int>(type: "INTEGER", nullable: false),
-                    PrecoUnitario = table.Column<decimal>(type: "TEXT", nullable: false),
-                    Active = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    Id = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    VendaId = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    ProdutoId = table.Column<Guid>(type: "RAW(16)", nullable: false),
+                    Quantidade = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    PrecoUnitario = table.Column<decimal>(type: "NUMBER(18,2)", nullable: false),
+                    Active = table.Column<bool>(type: "NUMBER(1)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false)
                 },
                 constraints: table =>
                 {

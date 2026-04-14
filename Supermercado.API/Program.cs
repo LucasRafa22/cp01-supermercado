@@ -17,20 +17,17 @@ public class Program
         
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         {
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            options.UseSqlite(connectionString);
+            var connectionString = builder.Configuration.GetConnectionString("RecommendaContextOracle");
+            options.UseOracle(connectionString);
         });
-        
+
         var app = builder.Build();
         
         if (app.Environment.IsDevelopment())
         {
-            
         }
-
-        app.UseHttpsRedirection();
-        app.UseAuthorization();
         
+        app.UseAuthorization();
         app.MapControllers();
         
         app.MapGet("/clientes", async (IClienteRepository repo) =>
@@ -39,6 +36,5 @@ public class Program
         });
         
         app.Run();
-        
     }
 }

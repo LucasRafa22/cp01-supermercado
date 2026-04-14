@@ -20,6 +20,31 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         
+        modelBuilder.Entity<Produto>()
+            .Property(p => p.Preco)
+            .HasColumnType("NUMBER(18,2)");
+
+        modelBuilder.Entity<Venda>()
+            .Property(v => v.ValorTotal)
+            .HasColumnType("NUMBER(18,2)");
+
+        modelBuilder.Entity<ItemVenda>()
+            .Property(i => i.PrecoUnitario)
+            .HasColumnType("NUMBER(18,2)");
+        
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        {
+            var properties = entityType.ClrType.GetProperties()
+                .Where(p => p.PropertyType == typeof(bool));
+
+            foreach (var property in properties)
+            {
+                modelBuilder.Entity(entityType.Name)
+                    .Property(property.Name)
+                    .HasColumnType("NUMBER(1)");
+            }
+        }
+
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }
