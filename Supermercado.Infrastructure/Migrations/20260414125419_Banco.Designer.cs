@@ -12,8 +12,8 @@ using Supermercado.Infrastructure.Data;
 namespace Supermercado.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260414124235_migracao")]
-    partial class migracao
+    [Migration("20260414125419_Banco")]
+    partial class Banco
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
