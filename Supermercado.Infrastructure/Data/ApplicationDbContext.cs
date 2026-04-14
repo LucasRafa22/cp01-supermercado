@@ -9,15 +9,17 @@ public class ApplicationDbContext : DbContext
         : base(options)
     {
     }
-
-    public DbSet<Cliente> Clientes => Set<Cliente>();
-    public DbSet<Produto> Produtos => Set<Produto>();
-    public DbSet<Categoria> Categorias => Set<Categoria>();
-    public DbSet<Venda> Vendas => Set<Venda>();
-    public DbSet<ItemVenda> ItensVenda => Set<ItemVenda>();
-
+    
+    public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<Categoria> Categorias { get; set; }
+    public DbSet<Produto> Produtos { get; set; }
+    public DbSet<Venda> Vendas { get; set; }
+    public DbSet<ItemVenda> ItensVenda { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+        
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }

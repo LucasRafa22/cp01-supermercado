@@ -31,15 +31,19 @@ namespace Supermercado.Infrastructure.Migrations
 
                     b.Property<string>("Descricao")
                         .IsRequired()
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categorias");
+                    b.HasIndex("Nome");
+
+                    b.ToTable("Categorias", (string)null);
                 });
 
             modelBuilder.Entity("Supermercado.Domain.Entities.Cliente", b =>
@@ -69,11 +73,15 @@ namespace Supermercado.Infrastructure.Migrations
 
                     b.Property<string>("Telefone")
                         .IsRequired()
+                        .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clientes");
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.ToTable("Clientes", (string)null);
                 });
 
             modelBuilder.Entity("Supermercado.Domain.Entities.ItemVenda", b =>
@@ -106,7 +114,7 @@ namespace Supermercado.Infrastructure.Migrations
 
                     b.HasIndex("VendaId");
 
-                    b.ToTable("ItensVenda");
+                    b.ToTable("ItensVenda", (string)null);
                 });
 
             modelBuilder.Entity("Supermercado.Domain.Entities.Produto", b =>
@@ -129,6 +137,7 @@ namespace Supermercado.Infrastructure.Migrations
 
                     b.Property<string>("Nome")
                         .IsRequired()
+                        .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
                     b.Property<decimal>("Preco")
@@ -138,7 +147,9 @@ namespace Supermercado.Infrastructure.Migrations
 
                     b.HasIndex("CategoriaId");
 
-                    b.ToTable("Produtos");
+                    b.HasIndex("Nome");
+
+                    b.ToTable("Produtos", (string)null);
                 });
 
             modelBuilder.Entity("Supermercado.Domain.Entities.Venda", b =>
@@ -166,7 +177,7 @@ namespace Supermercado.Infrastructure.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Vendas");
+                    b.ToTable("Vendas", (string)null);
                 });
 
             modelBuilder.Entity("Supermercado.Domain.Entities.ItemVenda", b =>
